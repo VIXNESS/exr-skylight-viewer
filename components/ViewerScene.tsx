@@ -41,11 +41,6 @@ const ViewerScene: React.FC<ViewerSceneProps> = ({
 }) => {
   return (
     <div className="w-full h-full relative bg-gray-900">
-      {!fileUrl && !modelUrl && (
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-          <p className="text-gray-500 text-lg">Upload an EXR or GLB file to begin</p>
-        </div>
-      )}
       
       <Canvas
         camera={{ position: [0, 0, 5], fov: 75 }} // Start back a bit so we can see the model
@@ -60,10 +55,37 @@ const ViewerScene: React.FC<ViewerSceneProps> = ({
         <FlyCamera inputRef={inputRef} />
         <ScreenshotManager onRegister={onScreenshotRegister} />
         
+        {/* Default lighting when no EXR environment is loaded */}
+        {!fileUrl && (
+          <>
+            <ambientLight intensity={0.4} />
+            <directionalLight 
+              position={[5, 10, 7]} 
+              intensity={1.2} 
+              castShadow 
+            />
+            <directionalLight 
+              position={[-5, 5, -5]} 
+              intensity={0.5} 
+            />
+            <hemisphereLight 
+              args={['#87ceeb', '#362a1e', 0.6]} 
+            />
+          </>
+        )}
+        
         {fileUrl && (
           <Suspense fallback={<Loader />}>
              <EnvironmentSphere url={fileUrl} />
           </Suspense>
+        )}
+
+        {/* Default white cube when no model is uploaded */}
+        {!modelUrl && (
+          <mesh position={[0, 0, 0]}>
+            <boxGeometry args={[1, 1, 1]} />
+            <meshStandardMaterial color="#ffffff" roughness={0.3} metalness={0.1} />
+          </mesh>
         )}
 
         {modelUrl && (
