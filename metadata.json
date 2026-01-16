@@ -1,5 +1,5 @@
 {
-  "name": "EXR Skylight Viewer",
-  "description": "A professional 3D viewer for EXR environment maps. Upload .exr files to visualize high-dynamic-range lighting in a 360-degree immersive view with exposure control.",
+  "name": "EXR Skylight and GLTF/GLB Model Rendering Viewer",
+  "description": "A professional 3D viewer for EXR environment maps and GLTF/GLB models. Upload .exr files to visualize high-dynamic-range lighting in a 360-degree immersive view, and render 3D models with realistic lighting and exposure control.",
   "requestFramePermissions": []
 }

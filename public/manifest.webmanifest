@@ -1,6 +1,6 @@
 {
-  "name": "EXR Skylight Viewer",
-  "short_name": "Skylight Viewer",
+  "name": "EXR Skylight and GLTF/GLB Model Rendering Viewer",
+  "short_name": "EXR & Model Viewer",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#111827",
