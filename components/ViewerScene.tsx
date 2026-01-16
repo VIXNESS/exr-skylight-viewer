@@ -41,9 +41,9 @@ const ViewerScene: React.FC<ViewerSceneProps> = ({
 }) => {
   return (
     <div className="w-full h-full relative bg-gray-900">
-      {!fileUrl && (
+      {!fileUrl && !modelUrl && (
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-          <p className="text-gray-500 text-lg">Upload an EXR file to begin</p>
+          <p className="text-gray-500 text-lg">Upload an EXR or GLB file to begin</p>
         </div>
       )}
       

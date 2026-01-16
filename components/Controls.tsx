@@ -100,25 +100,27 @@ const Controls: React.FC<UIStateProps> = ({
         </div>
 
         {/* Model & Exposure Settings Panel */}
-        {viewerState.fileUrl && (
+        {(viewerState.fileUrl || viewerState.modelUrl) && (
           <div className="bg-gray-900/90 backdrop-blur-md p-4 rounded-xl shadow-2xl border border-gray-800 w-full md:max-w-xs pointer-events-auto max-h-[40vh] overflow-y-auto">
-             {/* Exposure */}
-             <div className="mb-4">
-                <div className="flex items-center justify-between text-gray-300 text-xs mb-2">
-                  <span className="flex items-center gap-1.5"><Sun size={14} className="text-yellow-500"/> Exposure</span>
-                  <span className="bg-gray-800 px-1.5 py-0.5 rounded text-[10px] font-mono">{viewerState.exposure.toFixed(2)}</span>
-                </div>
-                <input
-                  type="range" min="0" max="5" step="0.05"
-                  value={viewerState.exposure}
-                  onChange={(e) => onExposureChange(parseFloat(e.target.value))}
-                  className="w-full h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-blue-500"
-                />
-             </div>
+             {/* Exposure - only show when EXR is loaded */}
+             {viewerState.fileUrl && (
+               <div className="mb-4">
+                  <div className="flex items-center justify-between text-gray-300 text-xs mb-2">
+                    <span className="flex items-center gap-1.5"><Sun size={14} className="text-yellow-500"/> Exposure</span>
+                    <span className="bg-gray-800 px-1.5 py-0.5 rounded text-[10px] font-mono">{viewerState.exposure.toFixed(2)}</span>
+                  </div>
+                  <input
+                    type="range" min="0" max="5" step="0.05"
+                    value={viewerState.exposure}
+                    onChange={(e) => onExposureChange(parseFloat(e.target.value))}
+                    className="w-full h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-blue-500"
+                  />
+               </div>
+             )}
 
              {/* Model Settings */}
              {viewerState.modelUrl && (
-               <div className="border-t border-gray-800 pt-3 space-y-4">
+               <div className={`${viewerState.fileUrl ? 'border-t border-gray-800 pt-3' : ''} space-y-4`}
                   
                   {/* Scale */}
                   <div>
