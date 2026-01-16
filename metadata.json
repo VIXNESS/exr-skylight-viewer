@@ -1,0 +1,5 @@
+{
+  "name": "EXR Skylight Viewer",
+  "description": "A professional 3D viewer for EXR environment maps. Upload .exr files to visualize high-dynamic-range lighting in a 360-degree immersive view with exposure control.",
+  "requestFramePermissions": []
+}
