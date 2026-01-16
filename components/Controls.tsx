@@ -120,9 +120,8 @@ const Controls: React.FC<UIStateProps> = ({
 
              {/* Model Settings */}
              {viewerState.modelUrl && (
-               <div className={`${viewerState.fileUrl ? 'border-t border-gray-800 pt-3' : ''} space-y-4`}
-                  
-                  {/* Scale */}
+              <div className={`${viewerState.fileUrl ? 'border-t border-gray-800 pt-3' : ''} space-y-4`}>
+                 {/* Scale */}
                   <div>
                     <div className="flex items-center justify-between text-gray-300 text-xs mb-2">
                         <span className="flex items-center gap-1.5"><Maximize size={14} className="text-green-500"/> Scale</span>
