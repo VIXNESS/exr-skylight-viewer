@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EXR Skylight Viewer</title>
+    <link rel="manifest" href="/manifest.webmanifest">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       body, html, #root {
@@ -34,6 +35,8 @@
 </head>
   <body>
     <div id="root"></div>
+  <!-- Three.js from CDN (for production build) -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.154.0/build/three.min.js"></script>
   <script type="module" src="/index.tsx"></script>
 </body>
 </html>

@@ -1,6 +1,18 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react';
-import ViewerScene from './components/ViewerScene';
+import React, { useState, useCallback, useEffect, useRef, Suspense, lazy } from 'react';
 import Controls from './components/Controls';
+
+// Lazy load the heavy 3D viewer (Three.js + React Three Fiber)
+const ViewerScene = lazy(() => import('./components/ViewerScene'));
+
+// Loading fallback for the 3D scene
+const SceneLoader: React.FC = () => (
+  <div className="w-full h-full flex items-center justify-center bg-gray-950">
+    <div className="flex flex-col items-center gap-4">
+      <div className="w-12 h-12 border-4 border-slate-700 border-t-blue-500 rounded-full animate-spin" />
+      <p className="text-slate-400 text-sm tracking-wide">Loading 3D Engine...</p>
+    </div>
+  </div>
+);
 import { ViewerState, InputState } from './types';
 
 const INITIAL_STATE: ViewerState = {
@@ -100,15 +112,17 @@ const App: React.FC = () => {
   return (
     <div className="relative w-full h-screen bg-gray-950 overflow-hidden text-slate-200 font-sans selection:bg-blue-500/30">
       <div className="absolute inset-0 z-0">
-        <ViewerScene 
-          fileUrl={state.fileUrl} 
-          exposure={state.exposure} 
-          modelUrl={state.modelUrl}
-          modelRotation={state.modelRotation}
-          modelScale={state.modelScale}
-          inputRef={inputRef}
-          onScreenshotRegister={(fn) => { screenshotHandlerRef.current = fn; }}
-        />
+        <Suspense fallback={<SceneLoader />}>
+          <ViewerScene 
+            fileUrl={state.fileUrl} 
+            exposure={state.exposure} 
+            modelUrl={state.modelUrl}
+            modelRotation={state.modelRotation}
+            modelScale={state.modelScale}
+            inputRef={inputRef}
+            onScreenshotRegister={(fn) => { screenshotHandlerRef.current = fn; }}
+          />
+        </Suspense>
       </div>
 
       <div className="absolute inset-0 z-10 pointer-events-none">

@@ -18,6 +18,17 @@ export default defineConfig(({ mode }) => {
         alias: {
           '@': path.resolve(__dirname, '.'),
         }
+      },
+      build: {
+        rollupOptions: {
+          // Externalize Three.js to load from CDN
+          external: ['three'],
+          output: {
+            globals: {
+              three: 'THREE'
+            }
+          }
+        }
       }
     };
 });

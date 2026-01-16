@@ -1,0 +1,8 @@
+{
+  "name": "EXR Skylight Viewer",
+  "short_name": "Skylight Viewer",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#111827"
+}
